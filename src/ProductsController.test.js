@@ -25,8 +25,8 @@ describe('ProductsController', () => {
     it('should return all codes', () => {
       const codes = productsController.getProductCodes();
       expect(codes.length).toBe(2);
-      expect(codes).toContain(CHAIR_RED.productCode);
-      expect(codes).toContain(CHAIR_BLUE.productCode);
+      expect(codes).toContain(CHAIR_RED);
+      expect(codes).toContain(CHAIR_BLUE);
     });
   });
 
