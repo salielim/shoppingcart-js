@@ -4,7 +4,8 @@ class ProductsController {
   }
 
   getProductCodes() {
-    return this.products.map(product => product.productCode);
+    // return this.products.map(product => product.productCode);
+    return this.products;
   }
 
   getProduct(productCode) {

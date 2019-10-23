@@ -1,0 +1,50 @@
+{
+  "200": {
+    "code": 200,
+    "message": "Generic success response"
+  },
+  "201": {
+    "code": 201,
+    "message": "Transaction successfully created"
+  },
+  "202": {
+    "code": 202,
+    "message": "The request has been received and presumed to run in the background"
+  },
+  "400": {
+    "code": 400,
+    "message": "Missing and/or invalid required parameters"
+  },
+  "401": {
+    "code": 401,
+    "message": "Header entry for apikey not provided"
+  },
+  "403": {
+    "code": 403,
+    "message": "Invalid apikey provided"
+  },
+  "404": {
+    "code": 404,
+    "message": "Requested entity record does not exist"
+  },
+  "405": {
+    "code": 405,
+    "message": "Wrong HTTP method requested on endpoint"
+  },
+  "500": {
+    "code": 500,
+    "message": "Generic server side error"
+  },
+  "502": {
+    "code": 502,
+    "message": "Invalid response from upstream server"
+  },
+  "503": {
+    "code": 503,
+    "message": "Server is currently unavailable because traffic overload or it is down for maintenance"
+  },
+  "504": {
+    "code": 504,
+    "message": "API Request Timeout"
+  }
+}
