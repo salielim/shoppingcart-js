@@ -9,12 +9,17 @@
     - Customer earns 1 point on every $10 spent on a product with 10% discount.
     - Customer earns 1 point on every $15 spent on a product with 15% discount.
 */
-module.exports = function(items) {
-  function checkout() {
-    var totalPrice = 0;
-    var loyaltyPoints = 0;
-    items.forEach(function(item) {
-      var discount = 0;
+
+class ShoppingCart {
+  constructor(items) {
+    this.items = items;
+  }
+
+  checkout() {
+    let totalPrice = 0;
+    let loyaltyPoints = 0;
+    items.forEach(item => {
+      let discount = 0;
       if (item.productCode.startsWith('DIS_10')) {
         discount = item.price * 0.1;
         loyaltyPoints += item.price / 10;
@@ -28,8 +33,6 @@ module.exports = function(items) {
     });
     return { totalPrice: totalPrice, loyaltyPoints: loyaltyPoints };
   }
+}
 
-  return {
-    checkout: checkout,
-  };
-};
+module.exports = ShoppingCart;
