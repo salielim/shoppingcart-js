@@ -4,7 +4,7 @@ const lookup = require('./lookup/codes.json');
 
 // mock out data file
 jest.mock(
-  './model/products',
+  './models/products',
   () => [
     {
       price: 25,

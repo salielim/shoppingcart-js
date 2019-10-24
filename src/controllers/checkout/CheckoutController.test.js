@@ -1,4 +1,4 @@
-const ShoppingCart = require('./shoppingCart');
+const CheckoutController = require('./CheckoutController');
 
 const CHAIR_RED = {
   price: 25, // 5 pts
@@ -29,11 +29,11 @@ const TABLE_RED = {
 const exampleProducts = [CHAIR_RED, CHAIR_BLUE, CHAIR_GREEN, TABLE_RED];
 const exampleProductsNoSet = [CHAIR_RED, CHAIR_BLUE, CHAIR_GREEN];
 
-describe('ShoppingCart', () => {
+describe('CheckoutController', () => {
   let shoppingCart;
 
   beforeEach(() => {
-    shoppingCart = new ShoppingCart(exampleProducts);
+    shoppingCart = new CheckoutController(exampleProducts);
   });
 
   describe('checkout', () => {
@@ -46,7 +46,7 @@ describe('ShoppingCart', () => {
       expect(totalPrice).toEqual(98.75);
     });
     it('should return total price after discounts of DIS_10, DIS_15', () => {
-      shoppingCart = new ShoppingCart(exampleProductsNoSet);
+      shoppingCart = new CheckoutController(exampleProductsNoSet);
       const totalPrice = shoppingCart.checkout().totalPriceAftDisc;
       expect(totalPrice).toEqual(68.75);
     });

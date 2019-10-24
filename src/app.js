@@ -2,9 +2,9 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
-const ProductsController = require('./ProductsController');
-const ShoppingCart = require('./ShoppingCart');
-const products = require('./model/products');
+const ProductsController = require('./controllers/products/ProductsController');
+const CheckoutController = require('./controllers/checkout/CheckoutController');
+const products = require('./models/products');
 const lookup = require('./lookup/codes.json');
 
 const app = express();
@@ -45,7 +45,7 @@ app.post('/checkout', (req, res) => {
       res.status(404).json({ status: lookup[404] });
     }
 
-    const shoppingCart = new ShoppingCart(items);
+    const shoppingCart = new CheckoutController(items);
     return res.status(200).json({
       status: lookup[200],
       data: shoppingCart.checkout(items),
