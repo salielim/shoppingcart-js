@@ -35,6 +35,27 @@ class ShoppingCart {
       totalPriceAftDisc = totalPriceBefDisc - totalDiscount;
     });
 
+    // $20 discount for table and chair package
+    const chairs = this.items.filter(item =>
+      item.productCode.includes('CHAIR'),
+    );
+    const tables = this.items.filter(item =>
+      item.productCode.includes('TABLE'),
+    );
+    const sets = this.items.filter(item => item.set);
+
+    if (
+      tables &&
+      tables.length &&
+      chairs &&
+      chairs.length &&
+      sets &&
+      sets.length > 1
+    ) {
+      totalPriceAftDisc -= 20;
+      totalDiscount += 20;
+    }
+
     return {
       totalPriceBefDisc,
       totalPriceAftDisc,

@@ -27,6 +27,7 @@ const TABLE_RED = {
 };
 
 const exampleProducts = [CHAIR_RED, CHAIR_BLUE, CHAIR_GREEN, TABLE_RED];
+const exampleProductsNoSet = [CHAIR_RED, CHAIR_BLUE, CHAIR_GREEN];
 
 describe('ShoppingCart', () => {
   let shoppingCart;
@@ -40,9 +41,14 @@ describe('ShoppingCart', () => {
       const totalPrice = shoppingCart.checkout().totalPriceBefDisc;
       expect(totalPrice).toEqual(125);
     });
-    it('should return total price after discounts of DIS_10, DIS_15', () => {
+    it('should return total price after discounts of DIS_10, DIS_15, $20', () => {
       const totalPrice = shoppingCart.checkout().totalPriceAftDisc;
-      expect(totalPrice).toEqual(118.75);
+      expect(totalPrice).toEqual(98.75);
+    });
+    it('should return total price after discounts of DIS_10, DIS_15', () => {
+      shoppingCart = new ShoppingCart(exampleProductsNoSet);
+      const totalPrice = shoppingCart.checkout().totalPriceAftDisc;
+      expect(totalPrice).toEqual(68.75);
     });
     it('should return total loyalty points', () => {
       const loyaltyPoints = shoppingCart.checkout().loyaltyPoints;
@@ -50,7 +56,7 @@ describe('ShoppingCart', () => {
     });
     it('should return total discount', () => {
       const totalDiscount = shoppingCart.checkout().totalDiscount;
-      expect(totalDiscount).toEqual(6.25);
+      expect(totalDiscount).toEqual(26.25);
     });
   });
 });
