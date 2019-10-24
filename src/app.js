@@ -4,7 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const ProductsController = require('./controllers/products/ProductsController');
 const CheckoutController = require('./controllers/checkout/CheckoutController');
-const products = require('./models/products');
+const products = require('./models/products/ProductModel');
 const lookup = require('./lookup/codes.json');
 
 const app = express();
