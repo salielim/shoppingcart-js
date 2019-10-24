@@ -81,8 +81,11 @@ describe('App', () => {
       expect(response.body).toEqual({
         status: lookup[200],
         data: {
-          totalPrice: 47.5,
           loyaltyPoints: 7.5,
+          totalDiscount: 2.5,
+          totalPriceAftDisc: 47.5,
+          totalPriceBefDisc: 50,
+          items: mockRes,
         },
       });
     });

@@ -16,22 +16,32 @@ class ShoppingCart {
   }
 
   checkout() {
-    let totalPrice = 0;
+    let totalPriceBefDisc = 0;
+    let totalPriceAftDisc = 0;
+    let totalDiscount = 0;
     let loyaltyPoints = 0;
+
     this.items.forEach(item => {
-      let discount = 0;
+      totalPriceBefDisc += item.price;
       if (item.productCode.startsWith('DIS_10')) {
-        discount = item.price * 0.1;
+        totalDiscount += item.price * 0.1;
         loyaltyPoints += item.price / 10;
       } else if (item.productCode.startsWith('DIS_15')) {
-        discount = item.price * 0.15;
+        totalDiscount += item.price * 0.15;
         loyaltyPoints += item.price / 15;
       } else {
         loyaltyPoints += item.price / 5;
       }
-      totalPrice += item.price - discount;
+      totalPriceAftDisc = totalPriceBefDisc - totalDiscount;
     });
-    return { totalPrice: totalPrice, loyaltyPoints: loyaltyPoints };
+
+    return {
+      totalPriceBefDisc,
+      totalPriceAftDisc,
+      totalDiscount,
+      loyaltyPoints,
+      items: this.items,
+    };
   }
 }
 
