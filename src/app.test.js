@@ -33,6 +33,10 @@ const mockRes = [
   },
 ];
 
+const mockReq = { items: ['CHAIR_RED', 'DIS_10-CHAIR_BLUE'] };
+const mockReqNotFound = { items: ['CHAIR_RED', 'FAKEY'] };
+const mockReqInvalid = ['CHAIR_RED', 'DIS_10-CHAIR_BLUE'];
+
 describe('App', () => {
   describe('/products', () => {
     it('return all products', async () => {
@@ -64,6 +68,40 @@ describe('App', () => {
       expect(response.statusCode).toBe(404);
       expect(response.body).toEqual({
         status: lookup[404],
+      });
+    });
+  });
+
+  describe('/checkout', () => {
+    it('return total price after discount and loyalty points', async () => {
+      const response = await request(app)
+        .post('/checkout')
+        .send(mockReq);
+      expect(response.statusCode).toBe(200);
+      expect(response.body).toEqual({
+        status: lookup[200],
+        data: {
+          totalPrice: 47.5,
+          loyaltyPoints: 7.5,
+        },
+      });
+    });
+    it('Return 404 when data cannot be found', async () => {
+      const response = await request(app)
+        .post('/checkout')
+        .send(mockReqNotFound);
+      expect(response.statusCode).toBe(404);
+      expect(response.body).toEqual({
+        status: lookup[404],
+      });
+    });
+    it('Return 400 when request params is missing or invalid', async () => {
+      const response = await request(app)
+        .post('/checkout')
+        .send(mockReqInvalid);
+      expect(response.statusCode).toBe(400);
+      expect(response.body).toEqual({
+        status: lookup[400],
       });
     });
   });

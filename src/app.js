@@ -34,9 +34,24 @@ app.get('/products', (req, res) =>
 );
 
 app.post('/checkout', (req, res) => {
-  const items = req.body.map(x => productsController.getProduct(x));
-  const shoppingCart = new ShoppingCart(items);
-  return res.json(shoppingCart.checkout());
+  let reqItems = req.body.items;
+  if (!reqItems || reqItems.length === 0) {
+    // validation - missing or invalid params
+    res.status(400).json({ status: lookup[400] });
+  } else {
+    const items = reqItems.map(x => productsController.getProduct(x));
+    if (items.includes(undefined)) {
+      // validation - item not found
+      res.status(404).json({ status: lookup[404] });
+    }
+
+    const shoppingCart = new ShoppingCart(items);
+    return res.status(200).json({
+      status: lookup[200],
+      data: shoppingCart.checkout(items),
+    });
+  }
 });
+
 
 module.exports = app;

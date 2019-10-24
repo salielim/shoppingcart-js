@@ -18,7 +18,7 @@ class ShoppingCart {
   checkout() {
     let totalPrice = 0;
     let loyaltyPoints = 0;
-    items.forEach(item => {
+    this.items.forEach(item => {
       let discount = 0;
       if (item.productCode.startsWith('DIS_10')) {
         discount = item.price * 0.1;
