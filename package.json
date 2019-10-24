@@ -4,7 +4,7 @@
   "description": "Shopping Cart coding problem",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/jest",
+    "test": "./node_modules/.bin/jest --coverage",
     "prettier": "./node_modules/.bin/prettier --write --single-quote --trailing-comma all \"**/*.js\"",
     "start": "nodemon src/index.js"
   },
