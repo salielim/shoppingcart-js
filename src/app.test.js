@@ -1,6 +1,6 @@
 const request = require('supertest');
 const app = require('./app');
-const lookup = require('./lookup.json');
+const lookup = require('./lookup/codes.json');
 
 // mock out data file
 jest.mock(

@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const ProductsController = require('./ProductsController');
 const ShoppingCart = require('./ShoppingCart');
 const products = require('./data/products.json');
-const lookup = require('./lookup.json');
+const lookup = require('./lookup/codes.json');
 
 const app = express();
 const productsController = new ProductsController(products);
