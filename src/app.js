@@ -4,7 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const ProductsController = require('./ProductsController');
 const ShoppingCart = require('./ShoppingCart');
-const products = require('./data/products.json');
+const products = require('./model/products');
 const lookup = require('./lookup/codes.json');
 
 const app = express();
@@ -52,6 +52,5 @@ app.post('/checkout', (req, res) => {
     });
   }
 });
-
 
 module.exports = app;
