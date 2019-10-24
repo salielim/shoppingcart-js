@@ -16,22 +16,53 @@ class ShoppingCart {
   }
 
   checkout() {
-    let totalPrice = 0;
+    let totalPriceBefDisc = 0;
+    let totalPriceAftDisc = 0;
+    let totalDiscount = 0;
     let loyaltyPoints = 0;
-    items.forEach(item => {
-      let discount = 0;
+
+    this.items.forEach(item => {
+      totalPriceBefDisc += item.price;
       if (item.productCode.startsWith('DIS_10')) {
-        discount = item.price * 0.1;
+        totalDiscount += item.price * 0.1;
         loyaltyPoints += item.price / 10;
       } else if (item.productCode.startsWith('DIS_15')) {
-        discount = item.price * 0.15;
+        totalDiscount += item.price * 0.15;
         loyaltyPoints += item.price / 15;
       } else {
         loyaltyPoints += item.price / 5;
       }
-      totalPrice += item.price - discount;
+      totalPriceAftDisc = totalPriceBefDisc - totalDiscount;
     });
-    return { totalPrice: totalPrice, loyaltyPoints: loyaltyPoints };
+
+    // $20 discount for table and chair package
+    const chairs = this.items.filter(item =>
+      item.productCode.includes('CHAIR'),
+    );
+    const tables = this.items.filter(item =>
+      item.productCode.includes('TABLE'),
+    );
+    const sets = this.items.filter(item => item.set);
+
+    if (
+      tables &&
+      tables.length &&
+      chairs &&
+      chairs.length &&
+      sets &&
+      sets.length > 1
+    ) {
+      totalPriceAftDisc -= 20;
+      totalDiscount += 20;
+    }
+
+    return {
+      totalPriceBefDisc,
+      totalPriceAftDisc,
+      totalDiscount,
+      loyaltyPoints,
+      items: this.items,
+    };
   }
 }
 
