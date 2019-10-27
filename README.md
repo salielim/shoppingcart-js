@@ -18,10 +18,12 @@ Refer to `ShoppingCartJS.postman_collection.json`
 - ES6 syntax
 - Class constructors
 - 100% Jest test coverage
+- Project structure with MVC (on unmerged branch `refactor/project-structure`)
 
 ### Implemented Features
+(branch `feature/post-checkout-endpoint`)
 
-- Validations for POST /checkout
+- Validations for POST /checkout 
 
   - 400 for missing/invalid request parameters
   - 404 for item not found
