@@ -37,12 +37,12 @@ app.post('/checkout', (req, res) => {
   let reqItems = req.body.items;
   if (!reqItems || reqItems.length === 0) {
     // validation - missing or invalid params
-    res.status(400).json({ status: lookup[400] });
+    return res.status(400).json({ status: lookup[400] });
   } else {
     const items = reqItems.map(x => productsController.getProduct(x));
     if (items.includes(undefined)) {
       // validation - item not found
-      res.status(404).json({ status: lookup[404] });
+      return res.status(404).json({ status: lookup[404] });
     }
 
     const shoppingCart = new ShoppingCart(items);
