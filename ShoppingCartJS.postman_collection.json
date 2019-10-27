@@ -1,0 +1,165 @@
+{
+	"info": {
+		"_postman_id": "ef427f0a-03be-459f-a514-eea715c4fb0d",
+		"name": "ShoppingCartJS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET /products (Success)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products"
+					]
+				},
+				"description": "Access all product(s) in the list successfully"
+			},
+			"response": []
+		},
+		{
+			"name": "GET /products/{PRODUCT_CODE} (Success)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/products/CHAIR_RED",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"CHAIR_RED"
+					]
+				},
+				"description": "Find a product in the list successfully"
+			},
+			"response": []
+		},
+		{
+			"name": "GET /products/{FAKEY_PRODUCT_CODE}  (Not Found)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/products/FAKEY_PRODUCT_CODE",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"products",
+						"FAKEY_PRODUCT_CODE"
+					]
+				},
+				"description": "Unable to find product in the list"
+			},
+			"response": []
+		},
+		{
+			"name": "POST /checkout (Success)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"items\": [\"CHAIR_RED\", \"DIS_10-CHAIR_BLUE\", \"BOARD_TABLE\"]}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/checkout",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"checkout"
+					]
+				},
+				"description": "Checkout product(s) successfully"
+			},
+			"response": []
+		},
+		{
+			"name": "POST /checkout (Missing / Invalid Request)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\"CHAIR_RED\", \"DIS_10-CHAIR_BLUE\", \"BOARD_TABLE\"]"
+				},
+				"url": {
+					"raw": "http://localhost:8080/checkout",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"checkout"
+					]
+				},
+				"description": "Unable to checkout product(s) due to missing or invalid request payload"
+			},
+			"response": []
+		},
+		{
+			"name": "POST /checkout (Not Found)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"items\": [\"FAKEY_PRODUCT_CODE\", \"DIS_10-CHAIR_BLUE\", \"BOARD_TABLE\"]}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/checkout",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"checkout"
+					]
+				},
+				"description": "Unable to checkout product(s) as item(s) is not found"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
